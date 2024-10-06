@@ -1,0 +1,44 @@
+SQL_assignment_6
+
+
+mysql> select * from emp;
++-------+--------+-----------+------+------------+------+------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal  | comm | deptno |
++-------+--------+-----------+------+------------+------+------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800 | NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 |  300 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 |  500 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-22 | 1250 | 1400 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987-09-23 | 3000 | NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-19 | 5000 | NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 |    0 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987-08-24 | 1100 | NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950 | NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |
++-------+--------+-----------+------+------------+------+------+--------+
+14 rows in set (0.00 sec)
+
+Q-1. Write an SQL query to print details of the Workers who have joined in Feb’2014 /(Feb'1981).
+
+mysql> select * from emp where hiredate like '%1981-02-%';
++-------+-------+----------+------+------------+------+------+--------+
+| empno | ename | job      | mgr  | hiredate   | sal  | comm | deptno |
++-------+-------+----------+------+------------+------+------+--------+
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1600 |  300 |     30 |
+|  7521 | WARD  | SALESMAN | 7698 | 1981-02-22 | 1250 |  500 |     30 |
++-------+-------+----------+------+------------+------+------+--------+
+2 rows in set (0.00 sec)
+
+Q-2. Write an SQL query to fetch duplicate records having matching data in some fields of a table.
+
+mysql> select * from emp where empno in (select empno from emp group by empno having count(*)>1);
+Empty set (0.00 sec)
+--- NOT DONE
+
+mysql> 
+Q-3. How to remove duplicate rows from Employees table.
+--- NOT DONE

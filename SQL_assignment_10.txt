@@ -1,0 +1,28 @@
+Q-19. Write an SQL query to determine the 5th highest salary without using TOP or limit method.
+
+
+mysql> select * from (select *,row_number() over(order by sal desc) row_num from emp) row_numb where row_num<6;
++-------+-------+-----------+------+------------+------+------+--------+---------+
+| empno | ename | job       | mgr  | hiredate   | sal  | comm | deptno | row_num |
++-------+-------+-----------+------+------------+------+------+--------+---------+
+|  7839 | KING  | PRESIDENT | NULL | 1981-11-19 | 5000 | NULL |     10 |       1 |
+|  7788 | SCOTT | ANALYST   | 7566 | 1987-09-23 | 3000 | NULL |     20 |       2 |
+|  7902 | FORD  | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL |     20 |       3 |
+|  7566 | JONES | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL |     20 |       4 |
+|  7698 | BLAKE | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL |     30 |       5 |
++-------+-------+-----------+------+------------+------+------+--------+---------+
+5 rows in set (0.00 sec)
+
+
+Q-20. Write an SQL query to fetch the list of employees with the same salary
+
+mysql> select e1.empno,e1.ename,e1.sal from emp e1, emp e2 where e1.sal=e2.sal and e1.empno!=e2.empno;
++-------+--------+------+
+| empno | ename  | sal  |
++-------+--------+------+
+|  7654 | MARTIN | 1250 |
+|  7521 | WARD   | 1250 |
+|  7902 | FORD   | 3000 |
+|  7788 | SCOTT  | 3000 |
++-------+--------+------+
+4 rows in set (0.00 sec)
